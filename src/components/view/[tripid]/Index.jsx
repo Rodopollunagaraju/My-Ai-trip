@@ -1,5 +1,7 @@
+import Dayplans from '@/components/costom/Dayplans'
 import Hotelinfo from '@/components/costom/Hotelinfo'
 import Infosection from '@/components/costom/Infosection'
+import Timeplans from '@/components/costom/Timeplans'
 import { db } from '@/components/services/fireBase'
 import { doc, getDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
@@ -22,6 +24,8 @@ export default function Index() {
     <div className='p-10 md:px-20 lg:px-44 xl:px-56'>
       <Infosection trip={trip} />
       <Hotelinfo trip={trip}/>
+      <Dayplans trip={trip}/>
+      <Timeplans trip={trip}/>
     </div>
   )
 }
