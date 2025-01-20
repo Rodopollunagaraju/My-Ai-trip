@@ -16,6 +16,7 @@ import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../services/fireBase";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 
 function Create() {
@@ -24,6 +25,7 @@ function Create() {
   const [isDisabled, setIsDisabled] = useState(false); // Button should be active initially
   const [display,setdisplay]=useState(false);
   const [loading,isloading]=useState(false)
+  const route=useNavigate()
 
   const handleForm = (name, value) => {
     setForm((prev) => ({
@@ -63,12 +65,18 @@ function Create() {
     
     setError(""); // Clear error if everything is valid
     console.log(formData)
-    const FORM_DATA=AI_PROMPT.replace('{location}',formData?.location).replace('{totaldays}',formData?.noOfdays).replace('{traveler}',formData?.list).replace('{budget}',formData?.budget)
+    const FORM_DATA=AI_PROMPT
+    .replace('{location}',formData?.location)
+    .replace('{totaldays}',formData?.noOfdays)
+    .replace('{traveler}',formData?.list)
+    .replace('{budget}',formData?.budget)
     console.log(FORM_DATA)
     const result=await chatSession.sendMessage(FORM_DATA)
-    console.log(result?.response?.text())
+    console.log(result?.response)
     isloading(false)
+    console.log(result?.response?.text())
     saveTrip(result?.response?.text())
+    
   };
   const login=useGoogleLogin({
     onSuccess:(CodeResp)=>getToken(CodeResp),
@@ -86,20 +94,22 @@ const getToken=async (tokeninfo)=>{
     setdisplay(false)
   })
 }
-const saveTrip=async(tripdata)=>{
+const saveTrip=async(Tripdata)=>{
   isloading(true)
   const ID=Date.now().toString()
   const user=JSON.parse(localStorage.getItem('user'))
   try{ await setDoc(doc(db,'tripdetails',ID),{
     tripreq:formData,
-    Tripai:tripdata,
+    Tripai:JSON.parse(Tripdata),
     User:user?.email,
-    id:ID    })}
+    id:ID   
+   })}
     catch(error){
       console.error("error is come")
     }
    
       isloading(false)
+      route('/viewtrip/'+ID)
 }
 
   return (
