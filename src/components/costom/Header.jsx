@@ -8,7 +8,7 @@ import {
     PopoverTrigger,
   } from "@/components/ui/popover"
 import { googleLogout ,useGoogleLogin} from '@react-oauth/google';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import {
     Dialog,
     DialogContent,
@@ -50,7 +50,7 @@ function Header(props) {
                 <img src={logo} alt="" />
                 {user ? 
                 <div className='flex items-center gap-5'>
-                    <Button variant="outline" className='rounded-lg'>My-trip</Button>
+                     <Link to='/mytrip'><Button variant="outline" className='rounded-lg'>My-trip</Button></Link>
                    
                     <Popover>
                         <PopoverTrigger> <img src={user?.picture} alt=""  className='h-[35px] w-[35px] rounded-full'/></PopoverTrigger>

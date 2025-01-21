@@ -4,7 +4,7 @@ export const SelectTravelesList = [
       title: 'Just Me',
       desc: 'A sole traveler in exploration',
       icon: '✈️',
-      people: '1',
+      people: '1 people',
     },
     {
       id: 2,
