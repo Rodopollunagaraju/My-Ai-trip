@@ -60,7 +60,7 @@ function Header(props) {
           </Link>
           <Link to="/mytrip">
             <Button variant="outline" className="rounded-lg">
-              My-trip
+              My-trips
             </Button>
           </Link>
 
