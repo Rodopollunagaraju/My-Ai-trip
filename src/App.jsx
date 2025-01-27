@@ -4,7 +4,7 @@ import { Button } from './components/ui/button'
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom'
 import Header from './components/costom/Header'
 import Create from './components/costom/Create-trip'
-import Index from './components/view/[tripid]'
+import Index from './components/view/Tripid/Index'
 import Mytrip from './components/costom/Mytrip'
 function App() {
   return (
