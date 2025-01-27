@@ -50,6 +50,7 @@ function Header(props) {
                 <img src={logo} alt="" />
                 {user ? 
                 <div className='flex items-center gap-5'>
+                   <Link to='/create-trip'><Button variant="outline" className='rounded-lg'>Create trip plan</Button></Link>
                      <Link to='/mytrip'><Button variant="outline" className='rounded-lg'>My-trip</Button></Link>
                    
                     <Popover>
